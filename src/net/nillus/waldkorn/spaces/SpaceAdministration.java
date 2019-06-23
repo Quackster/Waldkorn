@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Vector;
 
-import net.nillus.waldkorn.Server;
+import net.nillus.waldkorn.MasterServer;
 import net.nillus.waldkorn.ServerComponent;
 import net.nillus.waldkorn.items.Item;
 import net.nillus.waldkorn.rp.Npc;
@@ -20,7 +20,7 @@ public class SpaceAdministration extends ServerComponent
 {
 	private HashMap<String, SpaceModel> m_models;
 	
-	public SpaceAdministration(Server server)
+	public SpaceAdministration(MasterServer server)
 	{
 		super(server);
 		m_models = new HashMap<String, SpaceModel>();

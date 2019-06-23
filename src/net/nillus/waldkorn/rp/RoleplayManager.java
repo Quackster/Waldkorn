@@ -4,13 +4,13 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Vector;
 
-import net.nillus.waldkorn.Server;
+import net.nillus.waldkorn.MasterServer;
 import net.nillus.waldkorn.ServerComponent;
 import net.nillus.waldkorn.users.User;
 
 public class RoleplayManager extends ServerComponent
 {
-	public RoleplayManager(Server server)
+	public RoleplayManager(MasterServer server)
 	{
 		super(server);
 	}

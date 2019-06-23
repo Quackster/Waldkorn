@@ -1,12 +1,15 @@
 package net.nillus.waldkorn.sessions;
 
-import java.net.Socket;
 import java.util.Vector;
 
-import net.nillus.waldkorn.Server;
+import net.nillus.waldkorn.MasterServer;
+import net.nillus.waldkorn.Waldkorn;
 import net.nillus.waldkorn.access.UserAccessEntry;
 import net.nillus.waldkorn.moderation.CallForHelp;
+import net.nillus.waldkorn.moderation.ModerationCenter;
 import net.nillus.waldkorn.net.ClientMessage;
+import net.nillus.waldkorn.net.NetworkConnection;
+import net.nillus.waldkorn.net.ServerMessage;
 import net.nillus.waldkorn.sessions.commands.INFORETRIEVE;
 import net.nillus.waldkorn.sessions.commands.LOGIN;
 import net.nillus.waldkorn.sessions.commands.VERSIONCHECK;
@@ -18,27 +21,25 @@ public final class MasterClient extends MasterSession
 	private UserAccessEntry m_userAccessEntry;
 	private SessionCommandHandlerManager<MasterClient> m_commandHandlerMgr;
 	
-	public MasterClient(long sessionID, Socket socket, MasterServer server) throws Exception
+	public MasterClient(long sessionID, NetworkConnection socket, MasterServer server) throws Exception
 	{
 		super(sessionID, socket);
 		m_masterServer = server;
 		m_commandHandlerMgr = new SessionCommandHandlerManager<MasterClient>(this);
 		
 		// Register tuff
-		m_commandHandlerMgr.install(new VERSIONCHECK());
-		m_commandHandlerMgr.install(new LOGIN());
-		m_commandHandlerMgr.install(new INFORETRIEVE());
-		m_commandHandlerMgr.install(new UPDATE());
+		m_commandHandlerMgr.add(new VERSIONCHECK());
+		m_commandHandlerMgr.add(new LOGIN());
+		m_commandHandlerMgr.add(new INFORETRIEVE());
+		m_commandHandlerMgr.add(new UPDATE());
 	}
 	
 
-	@Override
 	protected boolean handleIncomingMessage(ClientMessage msg)
 	{
 		return m_commandHandlerMgr.handleMessage(msg);
 	}
-	
-	@Override
+
 	protected void cleanupSession()
 	{
 		if(super.getUserObject() != null)
@@ -51,8 +52,7 @@ public final class MasterClient extends MasterSession
 			getServer().getAccessControl().logLogout(m_userAccessEntry);
 		}
 	}
-	
-	@Override
+
 	protected void loginOk()
 	{
 		// Create access log entry
@@ -66,14 +66,15 @@ public final class MasterClient extends MasterSession
 		{
 			// Register moderation handlers
 			//m_commandHandlerMgr.install(new PICK_CRYFORHELP());
-			
+
 			// Send all the pending calls (while this moderator was offline)
-			Vector<CallForHelp> pendingCalls = m_masterServer.getModerationCenter().getPendingCalls();
+			Vector<CallForHelp> pendingCalls = Waldkorn.getServer().getModerationCenter().getPendingCalls();
 			for (CallForHelp call : pendingCalls)
 			{
+				ServerMessage response = new ServerMessage();
 				response.set("CRYFORHELP");
 				response.appendObject(call);
-				sendResponse();
+				//sendResponse();
 			}
 		}
 		
@@ -84,11 +85,11 @@ public final class MasterClient extends MasterSession
 		}
 			
 		// Log this event
-		getServer().getLogger().info(this, "user #" + getUserObject().ID + " [" + getUserObject().name + "] logged in from client #" + this.sessionID + " [" + getIpAddress() + "]");
+		getServer().getLogger().info(this, "user #" + getUserObject().ID + " [" + getUserObject().name + "] logged in from client #" + this.sessionID);//+ " [" + this.segetIpAddress() + "]");
 	}
 
 	@Override
-	public Server getServer()
+	public MasterServer getServer()
 	{
 		return m_masterServer;
 	}

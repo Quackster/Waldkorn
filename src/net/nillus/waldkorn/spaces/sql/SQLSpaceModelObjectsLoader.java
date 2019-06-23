@@ -1,17 +1,15 @@
 package net.nillus.waldkorn.spaces.sql;
 
+import com.blunk.storage.sql.SQLDataQuery;
+import net.nillus.waldkorn.Waldkorn;
+import net.nillus.waldkorn.items.Item;
+import net.nillus.waldkorn.spaces.SpaceModelObjectsLoader;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
-
-import net.nillus.waldkorn.items.Item;
-import net.nillus.waldkorn.items.sql.SQLItem;
-import net.nillus.waldkorn.spaces.SpaceModelObjectsLoader;
-
-
-import com.blunk.storage.sql.SQLDataQuery;
 
 public class SQLSpaceModelObjectsLoader extends SpaceModelObjectsLoader implements SQLDataQuery
 {
@@ -37,7 +35,7 @@ public class SQLSpaceModelObjectsLoader extends SpaceModelObjectsLoader implemen
 		Vector<Item> objs = new Vector<Item>();
 		while (result.next())
 		{
-			Item obj = new SQLItem();
+			Item obj = new Item();
 			if (SQLSpaceModelObjectsLoader.parseObjectFromResultSet(obj, result))
 			{
 				objs.add(obj);
@@ -52,21 +50,19 @@ public class SQLSpaceModelObjectsLoader extends SpaceModelObjectsLoader implemen
 	
 	public static boolean parseObjectFromResultSet(Item obj, ResultSet result)
 	{
-		try
-		{
-			if (obj.setDefinition(result.getInt("definitionid")))
-			{
-				obj.ID = result.getInt("id");
-				obj.X = result.getShort("x");
-				obj.Y = result.getShort("y");
-				obj.Z = result.getFloat("z");
-				obj.rotation = result.getByte("rotation");
-				obj.itemData = result.getString("object");
-				obj.customData = result.getString("data");
-				
-				// Parsed OK!
-				return true;
-			}
+		try {
+			obj.definition = Waldkorn.getServer().getItemAdmin().getDefinitions().get(result.getInt("definitionid"));
+
+			obj.ID = result.getInt("id");
+			obj.X = result.getShort("x");
+			obj.Y = result.getShort("y");
+			obj.Z = result.getFloat("z");
+			obj.rotation = result.getByte("rotation");
+			obj.itemData = result.getString("object");
+			obj.customData = result.getString("data");
+
+			// Parsed OK!
+			return true;
 		}
 		catch (SQLException ex)
 		{

@@ -3,6 +3,7 @@ package net.nillus.waldkorn.sessions;
 import net.nillus.waldkorn.access.UserAccessEntry;
 import net.nillus.waldkorn.messenger.Messenger;
 import net.nillus.waldkorn.net.NetworkConnection;
+import net.nillus.waldkorn.net.ServerMessage;
 import net.nillus.waldkorn.sessions.commands.INFORETRIEVE;
 import net.nillus.waldkorn.sessions.commands.master.ADD_FAVORITE_ROOM;
 import net.nillus.waldkorn.sessions.commands.master.APPROVENAME;
@@ -29,7 +30,7 @@ import net.nillus.waldkorn.sessions.commands.master.UPDATE;
 import net.nillus.waldkorn.sessions.commands.master.UPDATEFLAT;
 import net.nillus.waldkorn.users.User;
 
-public final class MasterSession extends Session
+public class MasterSession extends Session
 {
 	/**
 	 * @author root
@@ -87,7 +88,7 @@ public final class MasterSession extends Session
 		// CFH
 		this.getCmdHandlerMgr().add(new CRYFORHELP());
 	}
-	
+
 	public void stop(String reason)
 	{
 		// Destroy network connections

@@ -4,7 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Timestamp;
 
-import net.nillus.waldkorn.Server;
+import net.nillus.waldkorn.MasterServer;
 import net.nillus.waldkorn.ServerComponent;
 
 /**
@@ -14,7 +14,7 @@ import net.nillus.waldkorn.ServerComponent;
  */
 public class UserRegister extends ServerComponent
 {
-	public UserRegister(Server server)
+	public UserRegister(MasterServer server)
 	{
 		super(server);
 	}

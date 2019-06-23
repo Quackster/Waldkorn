@@ -2,12 +2,18 @@ package net.nillus.waldkorn;
 
 public class Waldkorn
 {
+	public static MasterServer server;
+
 	public static void main(String[] args)
 	{
 		// Initialize configuration, test database etc
-		Server server = new Server(args[0]);
+		server = new MasterServer(args[0]);
 		
 		// Start loading everything etcc
 		server.start();
+	}
+
+	public static MasterServer getServer() {
+		return server;
 	}
 }

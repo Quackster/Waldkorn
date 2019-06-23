@@ -1,11 +1,10 @@
 package net.nillus.waldkorn;
 
-import java.util.Hashtable;
-import java.util.Random;
-
+import com.blunk.storage.DataQueryFactory;
 import net.nillus.waldkorn.access.AccessControl;
 import net.nillus.waldkorn.catalogue.Catalogue;
 import net.nillus.waldkorn.items.ItemAdministration;
+import net.nillus.waldkorn.moderation.ModerationCenter;
 import net.nillus.waldkorn.net.NetworkConnection;
 import net.nillus.waldkorn.net.NetworkConnectionListener;
 import net.nillus.waldkorn.rp.RoleplayManager;
@@ -16,8 +15,12 @@ import net.nillus.waldkorn.storage.Database;
 import net.nillus.waldkorn.users.UserRegister;
 import net.nillus.waldkorn.util.PropertiesBox;
 
-public class Server implements Runnable
+import java.util.Hashtable;
+import java.util.Random;
+
+public class MasterServer implements Runnable
 {
+	private DataQueryFactory m_dataQryFactory;
 	private long m_startTime;
 	private Logger m_logger;
 	
@@ -29,7 +32,8 @@ public class Server implements Runnable
 	private SessionManager m_sessionMgr;
 	private Hashtable<Integer, NetworkConnectionListener> m_connectionListeners;
 	private SpaceServer m_spaceServer;
-	
+
+	private ModerationCenter m_moderationCenter;
 	private AccessControl m_accessControl;
 	private UserRegister m_userRegister;
 	private SpaceAdministration m_spaceAdmin;
@@ -37,12 +41,12 @@ public class Server implements Runnable
 	private Catalogue m_catalogue;
 	private RoleplayManager m_roleplayMgr;
 	
-	public Server(String propertiesFile)
+	public MasterServer(String propertiesFile)
 	{
 		// Create instances of all the components
 		m_startTime = System.currentTimeMillis();
 		m_random = new Random();
-		m_logger = new Logger("Server");
+		m_logger = new Logger("MasterServer");
 		
 		m_logger.info(this, "preparing with configuration values from \"" + propertiesFile + "\"...");
 		m_properties = new PropertiesBox();
@@ -59,6 +63,7 @@ public class Server implements Runnable
 		m_itemAdmin = new ItemAdministration(this);
 		m_catalogue = new Catalogue(this);
 		m_roleplayMgr = new RoleplayManager(this);
+		m_moderationCenter = new ModerationCenter(this);
 		
 		// Prepare the thread
 		m_thread = new Thread(this, this.toString() + " main thread");
@@ -203,4 +208,7 @@ public class Server implements Runnable
 		return this.getClass().getSimpleName();
 	}
 
+	public ModerationCenter getModerationCenter() {
+		return m_moderationCenter;
+	}
 }

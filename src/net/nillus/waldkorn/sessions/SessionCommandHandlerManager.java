@@ -4,9 +4,9 @@ import java.util.HashMap;
 
 import net.nillus.waldkorn.net.ClientMessage;
 import net.nillus.waldkorn.net.ServerMessage;
+import net.nillus.waldkorn.sessions.commands.INFORETRIEVE;
 
-public final class SessionCommandHandlerManager
-{
+public final class SessionCommandHandlerManager<M extends MasterSession> {
 	private Session m_session;
 	private ServerMessage m_response;
 	private HashMap<String, SessionCommandHandler> m_handlers;
@@ -90,5 +90,9 @@ public final class SessionCommandHandlerManager
 	public Session getSession()
 	{
 		return m_session;
+	}
+
+	public void install(INFORETRIEVE inforetrieve) {
+
 	}
 }

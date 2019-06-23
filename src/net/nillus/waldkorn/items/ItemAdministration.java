@@ -6,7 +6,7 @@ import java.sql.Types;
 import java.util.HashMap;
 import java.util.Vector;
 
-import net.nillus.waldkorn.Server;
+import net.nillus.waldkorn.MasterServer;
 import net.nillus.waldkorn.ServerComponent;
 
 /**
@@ -18,7 +18,7 @@ public class ItemAdministration extends ServerComponent
 {
 	private HashMap<Integer, ItemDefinition> m_definitions;
 	
-	public ItemAdministration(Server server)
+	public ItemAdministration(MasterServer server)
 	{
 		super(server);
 		m_definitions = new HashMap<Integer, ItemDefinition>();

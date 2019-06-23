@@ -11,8 +11,7 @@ public class SEND_USERPASS_TO_EMAIL extends SessionCommandHandler
 	{
 		String name = msg.nextArgument();
 		String email = msg.nextArgument();
-		client.systemMsg("Sorry, but this feature has not been implemented in the server yet.");
-		
-		client.getServer().getLogger().debug("SEND_USERPASS_TO_EMAIL", name + " (" + email + ")");
+		m_session.systemMsg("Sorry, but this feature has not been implemented in the server yet.");
+		m_session.getServer().getLogger().debug("SEND_USERPASS_TO_EMAIL", name + " (" + email + ")");
 	}
 }

@@ -1,16 +1,14 @@
 package net.nillus.waldkorn.spaces.sql;
 
+import com.blunk.storage.sql.SQLDataQuery;
+import com.suelake.habbo.spaces.UserFlatFinder;
+import net.nillus.waldkorn.spaces.Space;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
-
-import net.nillus.waldkorn.spaces.Space;
-import net.nillus.waldkorn.spaces.UserFlatFinder;
-
-
-import com.blunk.storage.sql.SQLDataQuery;
 
 public class SQLUserFlatFinder extends UserFlatFinder implements SQLDataQuery
 {
@@ -32,21 +30,21 @@ public class SQLUserFlatFinder extends UserFlatFinder implements SQLDataQuery
 		}
 		else if (super.searchBusy) // Retrieve main index, sort on busyness
 		{
-			query = conn.prepareStatement("SELECT spaces.*,users.name AS owner FROM spaces JOIN users ON spaces.ownerid = users.id ORDER BY users_now DESC LIMIT ?,?;");
+			query = conn.prepareStatement("SELECT spaces.*,users.name AS owner FROM spaces JOIN users ON spaces.ownerid = users.id ORDER BY users_now DESC,id DESC LIMIT ?,?;");
 			query.setInt(1, super.start);
 			query.setInt(2, super.stop);
 		}
 		else if(super.searchFavorites)
 		{
-			query = conn.prepareStatement("SELECT spaces.*,users.name AS owner FROM spaces JOIN users ON spaces.ownerid = users.id WHERE spaces.id IN(SELECT spaceid FROM users_favoriteflats WHERE userid = ?);");
+			query = conn.prepareStatement("SELECT s.*,u.name AS owner FROM users_favoriteflats AS uf JOIN spaces AS s ON s.id = uf.spaceid JOIN users AS u ON u.id = s.ownerid WHERE uf.userid = ?;");
 			query.setInt(1, super.userID);
 		}
 		else
 		{
 			// Search on criteria
-			query = conn.prepareStatement("SELECT spaces.*,users.name AS owner FROM spaces JOIN users ON spaces.ownerid = users.id WHERE spaces.name LIKE ? OR users.name = ? LIMIT 35;");
-			query.setString(1, "%" + this.criteria + "%");
-			query.setString(2, this.criteria);
+			query = conn.prepareStatement("SELECT spaces.*,users.name AS owner FROM spaces JOIN users ON spaces.ownerid = users.id WHERE users.name = ? OR spaces.name LIKE ? LIMIT 35;");
+			query.setString(1, this.criteria);
+			query.setString(2, this.criteria + "%");
 		}
 		
 		// Execute the query

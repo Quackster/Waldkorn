@@ -1,0 +1,12 @@
+.inertia.toml
+.secrets
+.kepler-secrets
+.gradle/
+.idea/
+/out/
+**.iml
+/gradle/
+/build/
+/bin/
+/tmp/
+/cmake-build-debug/

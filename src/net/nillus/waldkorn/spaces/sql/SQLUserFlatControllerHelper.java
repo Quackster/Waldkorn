@@ -6,9 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
 
-import net.nillus.waldkorn.spaces.UserFlatControllerHelper;
-
 import com.blunk.storage.sql.SQLDataQuery;
+import net.nillus.waldkorn.spaces.UserFlatControllerHelper;
 
 public class SQLUserFlatControllerHelper extends UserFlatControllerHelper implements SQLDataQuery
 {

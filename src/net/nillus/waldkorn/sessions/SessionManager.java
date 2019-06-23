@@ -3,7 +3,7 @@ package net.nillus.waldkorn.sessions;
 import java.util.Collection;
 import java.util.HashMap;
 
-import net.nillus.waldkorn.Server;
+import net.nillus.waldkorn.MasterServer;
 import net.nillus.waldkorn.ServerComponent;
 import net.nillus.waldkorn.net.NetworkConnection;
 import net.nillus.waldkorn.spaces.SpaceSession;
@@ -17,7 +17,7 @@ public class SessionManager extends ServerComponent
 	private HashMap<Long, SpaceSession> m_spaceSessions;
 	private HashMap<Integer, MasterSession> m_masterSessionsByUserId;
 	
-	public SessionManager(Server server)
+	public SessionManager(MasterServer server)
 	{
 		super(server);
 		m_lock = new Object();

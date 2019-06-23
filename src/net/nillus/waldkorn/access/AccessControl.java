@@ -6,7 +6,7 @@ import java.sql.Timestamp;
 import java.util.Date;
 import java.util.Vector;
 
-import net.nillus.waldkorn.Server;
+import net.nillus.waldkorn.MasterServer;
 import net.nillus.waldkorn.ServerComponent;
 import net.nillus.waldkorn.users.UserRole;
 
@@ -14,7 +14,7 @@ public class AccessControl extends ServerComponent
 {
 	private String m_messageOfTheDay;
 	
-	public AccessControl(Server server)
+	public AccessControl(MasterServer server)
 	{
 		super(server);
 		

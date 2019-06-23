@@ -1,15 +1,13 @@
 package net.nillus.waldkorn.spaces.sql;
 
+import com.blunk.Log;
+import com.blunk.storage.sql.SQLDataObject;
+import net.nillus.waldkorn.spaces.Space;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import net.nillus.waldkorn.spaces.Space;
-
-
-import com.blunk.Log;
-import com.blunk.storage.sql.SQLDataObject;
 
 public class SQLSpace extends Space implements SQLDataObject
 {
@@ -140,5 +138,10 @@ public class SQLSpace extends Space implements SQLDataObject
 		}
 		
 		return false;
+	}
+
+	@Override
+	public long getCacheKey() {
+		return 0;
 	}
 }

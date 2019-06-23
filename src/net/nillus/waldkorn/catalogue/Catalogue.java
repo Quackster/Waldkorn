@@ -3,7 +3,7 @@ package net.nillus.waldkorn.catalogue;
 import java.sql.ResultSet;
 import java.util.HashMap;
 
-import net.nillus.waldkorn.Server;
+import net.nillus.waldkorn.MasterServer;
 import net.nillus.waldkorn.ServerComponent;
 import net.nillus.waldkorn.items.Item;
 /**
@@ -16,7 +16,7 @@ public class Catalogue extends ServerComponent
 {
 	private HashMap<String, CatalogueArticle> m_articles;
 	
-	public Catalogue(Server server)
+	public Catalogue(MasterServer server)
 	{
 		super(server);
 		m_articles = new HashMap<String, CatalogueArticle>();

@@ -1,9 +1,9 @@
 package net.nillus.waldkorn.sessions.commands.master;
 
-import net.nillus.waldkorn.sessions.SessionCommandHandler;
+import net.nillus.waldkorn.Waldkorn;
 import net.nillus.waldkorn.moderation.ModerationCenter;
 import net.nillus.waldkorn.net.ClientMessage;
-import net.nillus.waldkorn.sessions.MasterClient;
+import net.nillus.waldkorn.sessions.SessionCommandHandler;
 
 public class PICK_CRYFORHELP extends SessionCommandHandler
 {
@@ -16,9 +16,9 @@ public class PICK_CRYFORHELP extends SessionCommandHandler
 		if(callID != -1)
 		{
 			// Not picked up already?
-			if(!HabboHotel.getModerationCenter().pickCallForHelp(callID, client.getUserObject().name))
+			if(!Waldkorn.getServer().getModerationCenter().pickCallForHelp(callID, m_session.getUserObject().name))
 			{
-				client.systemMsg("This call has already been picked up!");
+				m_session.systemMsg("This call has already been picked up!");
 			}
 		}
 	}

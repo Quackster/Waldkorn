@@ -1,17 +1,15 @@
 package net.nillus.waldkorn.spaces.sql;
 
+import com.blunk.storage.sql.SQLDataQuery;
+import net.nillus.waldkorn.spaces.PublicSpaceFinder;
+import net.nillus.waldkorn.spaces.Space;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
 
-import net.nillus.waldkorn.spaces.UnitFinder;
-import net.nillus.waldkorn.spaces.Space;
-
-
-import com.blunk.storage.sql.SQLDataQuery;
-
-public class SQLUnitFinder implements UnitFinder, SQLDataQuery
+public class SQLPublicSpaceFinder implements PublicSpaceFinder, SQLDataQuery
 {
 	@Override
 	public void execute(Connection conn) throws SQLException

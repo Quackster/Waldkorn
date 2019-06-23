@@ -1,11 +1,5 @@
 package net.nillus.waldkorn.util;
 
-import java.util.Collection;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import net.nillus.waldkorn.moderation.ModerationBan;
 import net.nillus.waldkorn.net.ServerMessage;
 import net.nillus.waldkorn.sessions.MasterSession;
@@ -13,10 +7,16 @@ import net.nillus.waldkorn.spaces.SpaceSession;
 import net.nillus.waldkorn.spaces.SpaceUser;
 import net.nillus.waldkorn.users.User;
 
+import java.util.Collection;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class ChatCommandHandler
 {
-	private final static String CHATCOMMAND_ABOUT_TXT = "¶&¶	Project Blunk" + "\r" + "¶&¶	Habbo Hotel V5 server emulator" + "\r" + "¶&¶	Platform: Java" + "\r" + "¶&¶	Authors: Nils [nillus] and Mike [office.boy]" + "\r" + "¶&¶	Special thanks go to:"
-			+ "\r" + "¶&¶		- Matthew Parlane" + "\r" + "¶&¶		- Joe 'Joeh' Hegarty" + "\r" + "¶&¶		- Aapo 'kyrpov' Kyrola";
+	private final static String CHATCOMMAND_ABOUT_TXT = "ï¿½&ï¿½	Project Blunk" + "\r" + "ï¿½&ï¿½	Habbo Hotel V5 server emulator" + "\r" + "ï¿½&ï¿½	Platform: Java" + "\r" + "ï¿½&ï¿½	Authors: Nils [nillus] and Mike [office.boy]" + "\r" + "ï¿½&ï¿½	Special thanks go to:"
+			+ "\r" + "ï¿½&ï¿½		- Matthew Parlane" + "\r" + "ï¿½&ï¿½		- Joe 'Joeh' Hegarty" + "\r" + "ï¿½&ï¿½		- Aapo 'kyrpov' Kyrola";
 	private final static int CHATCOMMAND_WHO_USERSPERPAGE = 20;
 	
 	public static boolean showAbout(SpaceSession session)
@@ -40,7 +40,7 @@ public class ChatCommandHandler
 		// Build the window message
 		ServerMessage wnd = new ServerMessage("SYSTEMBROADCAST");
 		wnd.appendNewArgument("SERVER");
-		wnd.appendTextLine("Server uptime is " + days + " day(s), " + hours + " hour(s), " + minutes + " minute(s) and " + seconds + " second(s)");
+		wnd.appendTextLine("MasterServer uptime is " + days + " day(s), " + hours + " hour(s), " + minutes + " minute(s) and " + seconds + " second(s)");
 		wnd.appendTextLine("Currently there are " + liveConns + "/" + maxConns + " connections in use.");
 		wnd.appendTextLine("Your master session ID is " + session.getMasterSession().sessionID + ".");
 		wnd.appendTextLine("");
@@ -531,7 +531,7 @@ public class ChatCommandHandler
 				else if (arg[0].equals("killemptyconnections"))
 				{
 					int amount = 0;
-					session.systemMsg("Server killed " + amount + " empty connections.");
+					session.systemMsg("MasterServer killed " + amount + " empty connections.");
 				}
 				else if (arg[0].equals("reloaditemdefinitions"))
 				{

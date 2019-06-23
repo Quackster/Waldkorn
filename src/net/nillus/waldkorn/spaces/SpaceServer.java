@@ -5,7 +5,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 
-import net.nillus.waldkorn.Server;
+import net.nillus.waldkorn.MasterServer;
 import net.nillus.waldkorn.ServerComponent;
 import net.nillus.waldkorn.net.NetworkConnection;
 
@@ -18,7 +18,7 @@ public class SpaceServer extends ServerComponent implements Runnable
 	private boolean m_alive;
 	private Thread m_thread;
 	
-	public SpaceServer(Server server)
+	public SpaceServer(MasterServer server)
 	{
 		super(server);
 		

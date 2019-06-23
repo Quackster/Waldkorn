@@ -1,17 +1,15 @@
 package net.nillus.waldkorn.spaces.sql;
 
+import com.blunk.Log;
+import com.blunk.storage.DatabaseException;
+import com.blunk.storage.sql.SQLDataQuery;
+import net.nillus.waldkorn.spaces.SpaceModel;
+import net.nillus.waldkorn.spaces.SpaceModelLoader;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
-
-import net.nillus.waldkorn.spaces.SpaceModel;
-import net.nillus.waldkorn.spaces.SpaceModelLoader;
-
-
-import com.blunk.Log;
-import com.blunk.storage.DatabaseException;
-import com.blunk.storage.sql.SQLDataQuery;
 
 public class SQLSpaceModelLoader extends SpaceModelLoader implements SQLDataQuery
 {

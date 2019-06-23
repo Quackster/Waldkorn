@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/blunk_src/!svn/ver/177/src/com/suelake/habbo/spaces/pathfinding
+END
+RotationCalculator.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/blunk_src/!svn/ver/177/src/com/suelake/habbo/spaces/pathfinding/RotationCalculator.java
+END
+NodeQueue.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/blunk_src/!svn/ver/114/src/com/suelake/habbo/spaces/pathfinding/NodeQueue.java
+END
+PathfinderNode.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/blunk_src/!svn/ver/114/src/com/suelake/habbo/spaces/pathfinding/PathfinderNode.java
+END
+JoehPathfinder.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/blunk_src/!svn/ver/151/src/com/suelake/habbo/spaces/pathfinding/JoehPathfinder.java
+END

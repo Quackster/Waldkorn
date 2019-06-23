@@ -133,4 +133,9 @@ public class SQLModerationBan extends ModerationBan implements SQLDataObject
 		query.setTimestamp(5, new Timestamp(super.expiresAt.getTime()));
 		query.setString(6, super.reason);
 	}
+
+	@Override
+	public long getCacheKey() {
+		return 0;
+	}
 }

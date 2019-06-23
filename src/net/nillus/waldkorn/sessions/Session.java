@@ -14,7 +14,7 @@ public abstract class Session extends ServerComponent
 	public final long sessionID;
 	private NetworkConnection m_connection;
 	private long m_lastMessageTime;
-	private SessionCommandHandlerManager m_cmdHandlerMgr;
+	private SessionCommandHandlerManager<MasterSession> m_cmdHandlerMgr;
 	
 	// Hacky way of getting this all right... I know!
 	private MasterSession m_master;
@@ -26,7 +26,7 @@ public abstract class Session extends ServerComponent
 		this.sessionID = sessionID;
 		m_connection = connection;
 		m_connection.startSession(this);
-		m_cmdHandlerMgr = new SessionCommandHandlerManager(this);
+		m_cmdHandlerMgr = new SessionCommandHandlerManager<MasterSession>(this);
 	}
 	
 	public void start()
@@ -38,7 +38,27 @@ public abstract class Session extends ServerComponent
 		// Greet client
 		this.send(new ServerMessage("HELLO"));
 	}
-	
+
+	public void sendCredits()
+	{
+		if (m_master.getUserObject() != null)
+		{
+			ServerMessage msg = new ServerMessage("WALLETBALANCE");
+			msg.appendArgument(Integer.toString(m_master.getUserObject().credits));
+			send(msg);
+		}
+	}
+
+	public void sendGameTickets()
+	{
+		if (m_master.getUserObject() != null)
+		{
+			ServerMessage msg = new ServerMessage("PH_TICKETS");
+			msg.appendArgument(Integer.toString(m_master.getUserObject().gameTickets));
+			send(msg);
+		}
+	}
+
 	public void requestRemoval(String reason)
 	{
 		m_server.getSessionMgr().removeSession(this.sessionID, reason);
@@ -88,10 +108,10 @@ public abstract class Session extends ServerComponent
 	public void setConnection(NetworkConnection connection)
 	{
 		m_connection = connection;
-		m_cmdHandlerMgr = new SessionCommandHandlerManager(this);
+		m_cmdHandlerMgr = new SessionCommandHandlerManager<MasterSession>(this);
 	}
 	
-	public SessionCommandHandlerManager getCmdHandlerMgr()
+	public SessionCommandHandlerManager<MasterSession> getCmdHandlerMgr()
 	{
 		return m_cmdHandlerMgr;
 	}

@@ -1,13 +1,12 @@
 package net.nillus.waldkorn.spaces.sql;
 
+import com.blunk.storage.sql.SQLDataQuery;
+import net.nillus.waldkorn.spaces.FavoriteFlatListHelper;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Vector;
-
-import net.nillus.waldkorn.spaces.FavoriteFlatListHelper;
-
-import com.blunk.storage.sql.SQLDataQuery;
 
 public class SQLFavoriteFlatListHelper extends FavoriteFlatListHelper implements SQLDataQuery
 {

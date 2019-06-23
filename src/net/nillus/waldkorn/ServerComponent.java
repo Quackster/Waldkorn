@@ -2,14 +2,14 @@ package net.nillus.waldkorn;
 
 public abstract class ServerComponent
 {
-	protected Server m_server;
+	protected MasterServer m_server;
 	
-	public ServerComponent(Server server)
+	public ServerComponent(MasterServer server)
 	{
 		m_server = server;
 	}
 	
-	public Server getServer()
+	public MasterServer getServer()
 	{
 		return m_server;
 	}

@@ -6,7 +6,7 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.SocketException;
 
-import net.nillus.waldkorn.Server;
+import net.nillus.waldkorn.MasterServer;
 import net.nillus.waldkorn.ServerComponent;
 import net.nillus.waldkorn.sessions.Session;
 
@@ -26,7 +26,7 @@ public final class NetworkConnection extends ServerComponent implements Runnable
 	// Session reference
 	private Session m_session;
 	
-	public NetworkConnection(Socket socket, Server server) throws Exception
+	public NetworkConnection(Socket socket, MasterServer server) throws Exception
 	{
 		super(server);
 		m_socket = socket;

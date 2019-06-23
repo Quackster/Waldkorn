@@ -1,12 +1,12 @@
 package net.nillus.waldkorn.moderation;
 
-import java.util.Date;
-import java.util.Vector;
-
-import net.nillus.waldkorn.Server;
+import net.nillus.waldkorn.MasterServer;
 import net.nillus.waldkorn.ServerComponent;
 import net.nillus.waldkorn.net.ServerMessage;
 import net.nillus.waldkorn.sessions.MasterSession;
+
+import java.util.Date;
+import java.util.Vector;
 
 /**
  * ModerationCenter is where authorized Users perform their moderation tasks such as banning and kicking Users and replying Call for Helps.
@@ -18,7 +18,7 @@ public class ModerationCenter extends ServerComponent
 	private static int m_callCounter;
 	private static Vector<CallForHelp> m_pendingCalls;
 	
-	public ModerationCenter(Server server)
+	public ModerationCenter(MasterServer server)
 	{
 		super(server);
 		m_callCounter = 0;
