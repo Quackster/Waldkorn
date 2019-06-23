@@ -12,6 +12,7 @@ import net.nillus.waldkorn.users.User;
 
 public class Npc extends SpaceUser
 {
+	public short ownerID;
 	private Random m_random;
 	private long m_lastActionTime;
 	private SpaceInstance m_space;
