@@ -4,7 +4,6 @@
 .gradle/
 .idea/
 /out/
-**.iml
 /gradle/
 /build/
 /bin/
